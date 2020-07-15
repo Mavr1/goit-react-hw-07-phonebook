@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Input from '../input/Input';
 import Button from '../button/Button';
-import shortid from 'shortid';
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts/contactsActions';
+import { addContact } from '../../redux/contacts/contactsOperations';
 
 const initialState = { name: '', number: '' };
 
@@ -17,7 +16,6 @@ class AddContactform extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newContact = {
-      id: shortid.generate(),
       name: this.state.name,
       number: this.state.number,
     };
@@ -49,7 +47,7 @@ class AddContactform extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addContact: (contact) => dispatch(contactsActions.addContact(contact)),
+  addContact: (contact) => dispatch(addContact(contact)),
 });
 
 export default connect(null, mapDispatchToProps)(AddContactform);

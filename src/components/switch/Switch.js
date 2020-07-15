@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Switch from '@material-ui/core/Switch';
 import { connect } from 'react-redux';
 import themeActions from '../../redux/theme/themeActions';
+import themeSelectors from '../../redux/theme/themeSelectors';
 
 class SwitchOne extends Component {
   state = { checked: true };
@@ -40,7 +41,7 @@ class SwitchOne extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  theme: state.theme.currentTheme,
+  theme: themeSelectors.getCurrentTheme(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

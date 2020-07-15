@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '../button/Button';
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts/contactsActions';
+import { deleteContact } from '../../redux/contacts/contactsOperations';
+import contactsSelectors from '../../redux/contacts/contactsSelectors';
 
 const ContactItem = ({ name, number, deleteContact }) => (
   <li>
@@ -12,13 +13,11 @@ const ContactItem = ({ name, number, deleteContact }) => (
 );
 
 const mapStateToProps = (state, { id }) => {
-  const { list } = state.contacts;
-  const contact = list.find((item) => item.id === id);
-  return contact;
+  return { ...contactsSelectors.getContactData(state, id) };
 };
 
 const mapDispatchToProps = (dispatch, { id }) => ({
-  deleteContact: () => dispatch(contactsActions.deleteContact(id)),
+  deleteContact: () => dispatch(deleteContact(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactItem);

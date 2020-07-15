@@ -1,16 +1,44 @@
 import actionTypes from '../actionTypes';
 
-const addContact = (contact) => ({
-  type: actionTypes.ADD_CONTACT,
+const getAllContactsSuccess = (contacts) => ({
+  type: actionTypes.GET_ALL_CONTACTS_SUCCESS,
+  payload: {
+    contacts,
+  },
+});
+
+const getAllContactsFailure = (error) => ({
+  type: actionTypes.GET_ALL_CONTACTS_FAILURE,
+  payload: {
+    error,
+  },
+});
+
+const addContactSuccess = (contact) => ({
+  type: actionTypes.ADD_CONTACT_SUCCESS,
   payload: {
     contact,
   },
 });
 
-const deleteContact = (id) => ({
-  type: actionTypes.DELETE_CONTACT,
+const addContactFailure = (error) => ({
+  type: actionTypes.ADD_CONTACT_FAILURE,
+  payload: {
+    error,
+  },
+});
+
+const deleteContactSuccess = (id) => ({
+  type: actionTypes.DELETE_CONTACT_SUCCESS,
   payload: {
     id,
+  },
+});
+
+const deleteContactFailure = (error) => ({
+  type: actionTypes.DELETE_CONTACT_FAILURE,
+  payload: {
+    error,
   },
 });
 
@@ -21,4 +49,12 @@ const setFilter = (event) => ({
   },
 });
 
-export default { addContact, deleteContact, setFilter };
+export default {
+  getAllContactsSuccess,
+  getAllContactsFailure,
+  addContactSuccess,
+  addContactFailure,
+  deleteContactSuccess,
+  deleteContactFailure,
+  setFilter,
+};
