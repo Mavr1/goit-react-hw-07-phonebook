@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Section from './components/section/Section';
 import AddContactform from './components/addContactform/AddContactform';
 import Filter from './components/filter/Filter';
@@ -11,9 +11,21 @@ import styles from './App.module.css';
 import contactsSelectors from './redux/contacts/contactsSelectors';
 import themeSelectors from './redux/theme/themeSelectors';
 
-const App = ({ contacts, filter, currentTheme }) => {
+const App = () => {
   const dispatch = useDispatch();
   useEffect(() => dispatch(getAllContacts()), [dispatch]);
+
+  const contacts = useSelector((state) =>
+    contactsSelectors.getContactsList(state)
+  );
+
+  const filter = useSelector((state) =>
+    contactsSelectors.getContactsFilter(state)
+  );
+
+  const currentTheme = useSelector((state) =>
+    themeSelectors.getCurrentTheme(state)
+  );
 
   return (
     <div
@@ -34,10 +46,4 @@ const App = ({ contacts, filter, currentTheme }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  contacts: contactsSelectors.getContactsList(state),
-  filter: contactsSelectors.getContactsFilter(state),
-  currentTheme: themeSelectors.getCurrentTheme(state),
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

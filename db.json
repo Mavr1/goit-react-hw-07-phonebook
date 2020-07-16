@@ -1,29 +1,19 @@
 {
   "contacts": [
     {
-      "name": "Михаил",
-      "number": "kjkkaa",
-      "id": 1
-    },
-    {
-      "name": "Mykhailo Mavrodii",
-      "number": "112",
-      "id": 2
-    },
-    {
       "name": "qqqq",
       "number": "56757",
       "id": 3
     },
     {
-      "name": "777",
-      "number": "11",
-      "id": 4
-    },
-    {
       "name": "Михаил",
       "number": "kjkkaa",
       "id": 5
+    },
+    {
+      "name": "www",
+      "number": "kjkkaa",
+      "id": 6
     }
   ]
 }
