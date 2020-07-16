@@ -5,8 +5,8 @@ import contactsSlice from '../../redux/contacts/contactsSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filterContacts = (query) =>
-    dispatch(contactsSlice.actions.filterContacts(query));
+  const filterContacts = (e) =>
+    dispatch(contactsSlice.actions.filterContacts(e.target.value));
   return (
     <Input
       label="Find contacts by name"

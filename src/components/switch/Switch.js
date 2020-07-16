@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Switch from '@material-ui/core/Switch';
 import { connect } from 'react-redux';
-import themeActions from '../../redux/theme/themeActions';
 import themeSelectors from '../../redux/theme/themeSelectors';
+import themeSlice from '../../redux/theme/themeSlice';
 
 class SwitchOne extends Component {
   state = { checked: true };
@@ -45,7 +45,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleTheme: () => dispatch(themeActions.switchTheme()),
+  toggleTheme: () => dispatch(themeSlice.actions.switchTheme()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SwitchOne);

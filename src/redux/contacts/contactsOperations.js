@@ -1,6 +1,6 @@
 import api from '../../services/api';
-import themeActions from '../theme/themeActions';
 import contactsSlice from './contactsSlice';
+import themeSlice from '../theme/themeSlice';
 
 export const addContact = (contact) => async (dispatch, getState) => {
   try {
@@ -29,13 +29,13 @@ export const deleteContact = (id) => async (dispatch, getState) => {
 
 export const getAllContacts = () => async (dispatch, getState) => {
   try {
-    dispatch(themeActions.setLoadingTrue);
+    dispatch(themeSlice.actions.setLoadingTrue());
     const { data } = await api.getAllContacts();
     dispatch(contactsSlice.actions.getAllContactsSuccess(data));
   } catch (e) {
     dispatch(contactsSlice.actions.getAllContactsFailure(e));
     console.log(e);
   } finally {
-    dispatch(themeActions.setLoadingFalse);
+    dispatch(themeSlice.actions.setLoadingFalse);
   }
 };
