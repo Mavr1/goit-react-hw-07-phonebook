@@ -12,7 +12,7 @@ export default createSlice({
   reducers: {
     getAllContactsSuccess: (state, action) => ({
       ...state,
-      list: action.payload.contacts,
+      list: action.payload,
     }),
 
     getAllContactsFailure: (state, action) => ({
@@ -22,7 +22,7 @@ export default createSlice({
 
     addContactSuccess: (state, action) => ({
       ...state,
-      list: [...state.list, action.payload.contact],
+      list: [...state.list, action.payload],
     }),
 
     addContactFailure: (state, action) => ({
@@ -32,7 +32,7 @@ export default createSlice({
 
     deleteContactSuccess: (state, action) => ({
       ...state,
-      list: state.list.filter((item) => item.id !== action.payload.id),
+      list: state.list.filter((item) => item.id !== action.payload),
     }),
 
     deleteContactFailure: (state, action) => ({
@@ -42,7 +42,7 @@ export default createSlice({
 
     filterContacts: (state, action) => ({
       ...state,
-      filter: action.payload.filter,
+      filter: action.payload,
     }),
   },
 });

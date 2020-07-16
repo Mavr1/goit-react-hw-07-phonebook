@@ -1,11 +1,12 @@
 import React from 'react';
 import Input from '../input/Input';
 import { useDispatch } from 'react-redux';
-import contactsActions from '../../redux/contacts/contactsActions';
+import contactsSlice from '../../redux/contacts/contactsSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filterContacts = (query) => dispatch(contactsActions.setFilter(query));
+  const filterContacts = (query) =>
+    dispatch(contactsSlice.actions.filterContacts(query));
   return (
     <Input
       label="Find contacts by name"

@@ -1,6 +1,6 @@
 import api from '../../services/api';
-import contactsActions from './contactsActions';
 import themeActions from '../theme/themeActions';
+import contactsSlice from './contactsSlice';
 
 export const addContact = (contact) => async (dispatch, getState) => {
   try {
@@ -9,10 +9,10 @@ export const addContact = (contact) => async (dispatch, getState) => {
     );
     if (!match) {
       const addedContact = await api.addContact(contact);
-      dispatch(contactsActions.addContactSuccess(addedContact.data));
+      dispatch(contactsSlice.actions.addContactSuccess(addedContact.data));
     } else alert(`User with name ${contact.name} already exists`);
   } catch (e) {
-    dispatch(contactsActions.addContactFailure(e));
+    dispatch(contactsSlice.actions.addContactFailure(e));
     console.log(e);
   }
 };
@@ -20,9 +20,9 @@ export const addContact = (contact) => async (dispatch, getState) => {
 export const deleteContact = (id) => async (dispatch, getState) => {
   try {
     await api.deleteContact(id);
-    dispatch(contactsActions.deleteContactSuccess(id));
+    dispatch(contactsSlice.actions.deleteContactSuccess(id));
   } catch (e) {
-    dispatch(contactsActions.deleteContactFailure(e));
+    dispatch(contactsSlice.actions.deleteContactFailure(e));
     console.log(e);
   }
 };
@@ -30,10 +30,10 @@ export const deleteContact = (id) => async (dispatch, getState) => {
 export const getAllContacts = () => async (dispatch, getState) => {
   try {
     dispatch(themeActions.setLoadingTrue);
-    const contacts = await api.getAllContacts();
-    dispatch(contactsActions.getAllContactsSuccess(contacts.data));
+    const { data } = await api.getAllContacts();
+    dispatch(contactsSlice.actions.getAllContactsSuccess(data));
   } catch (e) {
-    dispatch(contactsActions.getAllContactsFailure(e));
+    dispatch(contactsSlice.actions.getAllContactsFailure(e));
     console.log(e);
   } finally {
     dispatch(themeActions.setLoadingFalse);

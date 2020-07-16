@@ -1,8 +1,8 @@
 // import { createStore, combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import contactsReducer from './contacts/contactsReducer';
 import themeReducer from './theme/themeReducer';
+import contactsSlice from './contacts/contactsSlice';
 
 export const store = configureStore({
-  reducer: { contacts: contactsReducer, theme: themeReducer },
+  reducer: { contacts: contactsSlice.reducer, theme: themeReducer },
 });
