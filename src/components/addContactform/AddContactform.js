@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Input from '../input/Input';
 import Button from '../button/Button';
-import { connect } from 'react-redux';
 import { addContact } from '../../redux/contacts/contactsOperations';
 
 const initialState = { name: '', number: '' };
