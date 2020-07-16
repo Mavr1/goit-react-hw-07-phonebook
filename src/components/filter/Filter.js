@@ -1,14 +1,18 @@
 import React from 'react';
 import Input from '../input/Input';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import contactsActions from '../../redux/contacts/contactsActions';
 
-const Filter = ({ setFilter }) => (
-  <Input label="Find contacts by name" onChange={setFilter} name="filter" />
-);
+const Filter = () => {
+  const dispatch = useDispatch();
+  const filterContacts = (query) => dispatch(contactsActions.setFilter(query));
+  return (
+    <Input
+      label="Find contacts by name"
+      onChange={filterContacts}
+      name="filter"
+    />
+  );
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  setFilter: (query) => dispatch(contactsActions.setFilter(query)),
-});
-
-export default connect(null, mapDispatchToProps)(Filter);
+export default Filter;

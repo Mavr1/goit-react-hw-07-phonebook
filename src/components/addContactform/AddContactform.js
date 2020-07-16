@@ -1,53 +1,42 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import { addContact } from '../../redux/contacts/contactsOperations';
 
-const initialState = { name: '', number: '' };
+const AddContactform = () => {
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-class AddContactform extends Component {
-  state = { name: '', number: '' };
+  const handleInputName = (e) => setName(e.target.value);
+  const handleInputNumber = (e) => setNumber(e.target.value);
 
-  handleInput = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const newContact = {
-      name: this.state.name,
-      number: this.state.number,
+      name,
+      number,
     };
-    if (this.state.name.trim()) {
-      this.props.addContact(newContact);
+    if (name.trim()) {
+      dispatch(addContact(newContact));
     }
-    this.setState(initialState);
+    setName('');
+    setNumber('');
   };
 
-  render() {
-    return (
-      <form>
-        <Input
-          value={this.state.name}
-          label="Name"
-          name="name"
-          onChange={this.handleInput}
-        />
-        <Input
-          value={this.state.number}
-          label="Number"
-          name="number"
-          onChange={this.handleInput}
-        />
-        <Button name="Add contact" type="submit" onClick={this.handleSubmit} />
-      </form>
-    );
-  }
-}
+  return (
+    <form>
+      <Input value={name} label="Name" name="name" onChange={handleInputName} />
+      <Input
+        value={number}
+        label="Number"
+        name="number"
+        onChange={handleInputNumber}
+      />
+      <Button name="Add contact" type="submit" onClick={handleSubmit} />
+    </form>
+  );
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  addContact: (contact) => dispatch(addContact(contact)),
-});
-
-export default connect(null, mapDispatchToProps)(AddContactform);
+export default AddContactform;
